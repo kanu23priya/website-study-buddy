@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Discover Matches - Study Buddy</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      background-color: #2874f0;
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      width: 100%;
+    }
+    main {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 90%;
+      margin: 30px 0;
+      padding: 20px;
+      text-align: center;
+      user-select: none;
+      touch-action: pan-y;
+      position: relative;
+    }
+    .card {
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #e9f0ff;
+      box-shadow: 0 2px 6px rgba(40,116,240,0.2);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      position: absolute;
+      width: calc(100% - 40px);
+      left: 20px;
+      top: 20px;
+    }
+    .card h3 {
+      margin: 0 0 10px 0;
+      color: #2874f0;
+    }
+    .card p {
+      margin: 5px 0;
+      font-size: 1rem;
+      color: #555;
+    }
+    .buttons {
+      margin-top: 180px;
+      display: flex;
+      justify-content: space-around;
+    }
+    button {
+      background-color: #2874f0;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 120px;
+    }
+    button:hover {
+      background-color: #1a52c0;
+    }
+    .back-link {
+      margin-top: 20px;
+      color: #2874f0;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>Study Buddy - Discover Matches</header>
+  <main id="cardContainer">
+    <!-- Cards will be dynamically inserted here -->
+  </main>
+  <div class="buttons">
+    <button id="unmatchBtn">Unmatch &larr;</button>
+    <button id="matchBtn">Match &rarr;</button>
+    <button id="chatBtn">Chat &#128172;</button>
+  </div>
+  <a href="buddyfinder.html" class="back-link">&larr; Back to Buddy Finder</a>
+
+  <script>
+    const matches = [
+      {name: 'Alice', sharedSubjects: ['Mathematics', 'Science'], studyHabits: 'Group, Morning', availability: 'Weekdays', location: 'Campus'},
+      {name: 'Bob', sharedSubjects: ['English', 'History'], studyHabits: 'Solo, Evening', availability: 'Weekends', location: 'Campus'},
+      {name: 'Diana', sharedSubjects: ['Languages', 'History'], studyHabits: 'In-Person, Morning', availability: 'Weekdays', location: 'Campus'},
+    ];
+
+    // Filter matches by campus location
+    const campusMatches = matches.filter(m => m.location === 'Campus');
+
+    let currentIndex = 0;
+    const cardContainer = document.getElementById('cardContainer');
+
+    function createCard(match) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3>${match.name}</h3>
+        <p><strong>Shared Subjects:</strong> ${match.sharedSubjects.join(', ')}</p>
+        <p><strong>Study Habits:</strong> ${match.studyHabits}</p>
+        <p><strong>Availability:</strong> ${match.availability}</p>
+      `;
+      return card;
+    }
+
+    function showCard(index) {
+      cardContainer.innerHTML = '';
+      if (index >= campusMatches.length) {
+        cardContainer.innerHTML = '<p>No more matches to show.</p>';
+        return;
+      }
+      const card = createCard(campusMatches[index]);
+      cardContainer.appendChild(card);
+    }
+
+    function nextCard() {
+      if (currentIndex < campusMatches.length - 1) {
+        currentIndex++;
+        showCard(currentIndex);
+      } else {
+        cardContainer.innerHTML = '<p>No more matches to show.</p>';
+      }
+    }
+
+    function prevCard() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        showCard(currentIndex);
+      }
+    }
+
+    document.getElementById('matchBtn').addEventListener('click', () => {
+      // No popup, just move to next card
+      nextCard();
+    });
+
+    document.getElementById('unmatchBtn').addEventListener('click', () => {
+      // No popup, just move to next card
+      nextCard();
+    });
+
+    document.getElementById('chatBtn').addEventListener('click', () => {
+      // Navigate to inbox.html to chat with current match
+      window.location.href = 'inbox.html';
+    });
+
+    // Initial card display
+    showCard(currentIndex);
+  </script>
+</body>
+</html>

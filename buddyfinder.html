@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buddy Finder - Study Buddy</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background-color: #2874f0;
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #2874f0;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 5px;
+      display: block;
+    }
+    select, input[type="text"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 180px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #2874f0;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      align-self: center;
+      height: 42px;
+    }
+    button:hover {
+      background-color: #1a52c0;
+    }
+    .results {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+      gap: 20px;
+    }
+    .card {
+      background-color: #e9f0ff;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(40,116,240,0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .card h3 {
+      margin: 0;
+      color: #2874f0;
+    }
+    .card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>Study Buddy - Buddy Finder</header>
+  <main>
+    <h2>Find Your Study Buddy</h2>
+    <form id="filterForm">
+      <div>
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject">
+          <option value="">Any</option>
+          <option value="Mathematics">Mathematics</option>
+          <option value="Science">Science</option>
+          <option value="English">English</option>
+          <option value="History">History</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Languages">Languages</option>
+        </select>
+      </div>
+      <div>
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" placeholder="Enter location" />
+      </div>
+      <div>
+        <label for="studyStyle">Study Style</label>
+        <select id="studyStyle" name="studyStyle">
+          <option value="">Any</option>
+          <option value="Group">Group</option>
+          <option value="Solo">Solo</option>
+          <option value="Online">Online</option>
+          <option value="In-Person">In-Person</option>
+        </select>
+      </div>
+      <div>
+        <label for="availability">Availability</label>
+        <select id="availability" name="availability">
+          <option value="">Any</option>
+          <option value="Weekdays">Weekdays</option>
+          <option value="Weekends">Weekends</option>
+          <option value="Evenings">Evenings</option>
+          <option value="Mornings">Mornings</option>
+        </select>
+      </div>
+      <button type="button" onclick="filterBuddies()">Find Buddies</button>
+    </form>
+    <div class="results" id="results">
+      <!-- Matching buddies will be displayed here -->
+    </div>
+  </main>
+  <div style="text-align: center; margin: 20px auto; font-weight: 600;">
+    <a href="discover.html" style="display: block; margin-bottom: 10px; color: #2874f0; text-decoration: none;">Go to Discover &rarr;</a>
+    <a href="intrest.html" style="display: block; color: #2874f0; text-decoration: none;">&larr; Back to Profile</a>
+  </div>
+  <script>
+    const buddies = [
+      {name: 'Alice', subject: 'Mathematics', location: 'New York', studyStyle: 'Group', availability: 'Weekdays'},
+      {name: 'Bob', subject: 'Science', location: 'Los Angeles', studyStyle: 'Solo', availability: 'Weekends'},
+      {name: 'Charlie', subject: 'English', location: 'Chicago', studyStyle: 'Online', availability: 'Evenings'},
+      {name: 'Diana', subject: 'History', location: 'New York', studyStyle: 'In-Person', availability: 'Mornings'},
+      {name: 'Ethan', subject: 'Computer Science', location: 'San Francisco', studyStyle: 'Group', availability: 'Weekdays'},
+      {name: 'Fiona', subject: 'Languages', location: 'Boston', studyStyle: 'Solo', availability: 'Weekends'}
+    ];
+
+    function filterBuddies() {
+      const subject = document.getElementById('subject').value;
+      const location = document.getElementById('location').value.toLowerCase();
+      const studyStyle = document.getElementById('studyStyle').value;
+      const availability = document.getElementById('availability').value;
+
+      const filtered = buddies.filter(buddy => {
+        return (subject === '' || buddy.subject === subject) &&
+               (location === '' || buddy.location.toLowerCase().includes(location)) &&
+               (studyStyle === '' || buddy.studyStyle === studyStyle) &&
+               (availability === '' || buddy.availability === availability);
+      });
+
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '';
+
+      if (filtered.length === 0) {
+        resultsDiv.innerHTML = '<p>No matching study buddies found.</p>';
+        return;
+      }
+
+      filtered.forEach(buddy => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h3>${buddy.name}</h3>
+          <p><strong>Subject:</strong> ${buddy.subject}</p>
+          <p><strong>Location:</strong> ${buddy.location}</p>
+          <p><strong>Study Style:</strong> ${buddy.studyStyle}</p>
+          <p><strong>Availability:</strong> ${buddy.availability}</p>
+        `;
+        resultsDiv.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>

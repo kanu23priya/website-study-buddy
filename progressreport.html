@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Progress Report - Study Buddy</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background-color: #2874f0;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+    nav {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 10px 0;
+      position: sticky;
+      top: 50px;
+      z-index: 999;
+    }
+    nav a {
+      color: #2874f0;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover, nav a.active {
+      background-color: #e3f2fd;
+    }
+    main {
+      max-width: 900px;
+      margin: 20px auto 60px;
+      padding: 30px 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #2874f0;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #2874f0;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .summary {
+      margin-top: 30px;
+      font-size: 1.1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" onclick="window.location.href='index1.html'">Study Buddy</div>
+  </header>
+  <nav>
+    <a href="index1.html">Home</a>
+    <a href="feature.html">Personalized Study Plan</a>
+    <a href="progressstracking.html">Progress Tracking</a>
+    <a href="progressreport.html" class="active">Progress Report</a>
+    <a href="discover.html">Discover</a>
+    <a href="signup.html">Sign Up</a>
+  </nav>
+  <main>
+    <h1>Progress Report</h1>
+    <p>Review your study sessions and track your progress over time.</p>
+    <canvas id="progressChart" width="800" height="400"></canvas>
+    <div class="summary" id="summary">
+      <!-- Summary info will be displayed here -->
+    </div>
+  </main>
+  <footer>
+    &copy; 2024 Study Buddy. All rights reserved.
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Sample data for demonstration
+    const studentActivity = {
+      screenTime: 300, // minutes
+      chatMessages: 45,
+      websiteVisits: 20,
+      studySessions: [
+        { subject: 'Mathematics', timeSpent: 120, date: '2024-06-01' },
+        { subject: 'Science', timeSpent: 90, date: '2024-06-02' },
+        { subject: 'English', timeSpent: 60, date: '2024-06-03' },
+        { subject: 'Mathematics', timeSpent: 45, date: '2024-06-04' },
+      ]
+    };
+
+    const summary = document.getElementById('summary');
+
+    function renderBarAndPieChart() {
+      const ctx = document.getElementById('progressChart').getContext('2d');
+      const labels = ['Hours Studied', 'Chat Messages', 'Topics Covered'];
+      const data = [studentActivity.screenTime / 60, studentActivity.chatMessages, studentActivity.websiteVisits];
+
+      // Create a bar chart and a pie chart side by side using Chart.js
+      // We will create two canvas elements dynamically and render charts on them
+
+      // Clear existing canvas and create two new canvases
+      const main = document.querySelector('main');
+      const oldCanvas = document.getElementById('progressChart');
+      oldCanvas.remove();
+
+      const barCanvas = document.createElement('canvas');
+      barCanvas.id = 'barChart';
+      barCanvas.width = 200;
+      barCanvas.height = 200;
+
+      const pieCanvas = document.createElement('canvas');
+      pieCanvas.id = 'pieChart';
+      pieCanvas.width = 200;
+      pieCanvas.height = 200;
+
+      const container = document.createElement('div');
+      container.style.display = 'flex';
+      container.style.flexDirection = 'column';
+      container.style.alignItems = 'center';
+      container.appendChild(barCanvas);
+      container.appendChild(pieCanvas);
+
+      pieCanvas.style.width = '180px';
+      pieCanvas.style.height = '180px';
+
+      main.appendChild(container);
+
+      // Bar chart
+      const barCtx = barCanvas.getContext('2d');
+      const barChart = new Chart(barCtx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Student Activity',
+            data: data,
+            backgroundColor: [
+              'rgba(40, 116, 240, 0.7)',
+              'rgba(255, 206, 86, 0.7)',
+              'rgba(75, 192, 192, 0.7)'
+            ],
+            borderColor: [
+              'rgba(40, 116, 240, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+
+      // Pie chart
+      const pieCtx = pieCanvas.getContext('2d');
+      const pieChart = new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: data,
+            backgroundColor: [
+              'rgba(40, 116, 240, 0.7)',
+              'rgba(255, 206, 86, 0.7)',
+              'rgba(75, 192, 192, 0.7)'
+            ],
+            borderColor: [
+              'rgba(40, 116, 240, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              position: 'right'
+            }
+          }
+        }
+      });
+
+      const totalActivity = data.reduce((a, b) => a + b, 0);
+      summary.textContent = `Total Activity Count: ${totalActivity.toFixed(2)}`;
+    }
+
+    renderBarAndPieChart();
+  </script>
+</body>
+</html>

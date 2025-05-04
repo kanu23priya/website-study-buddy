@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Progress Tracking - Study Buddy</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    /* Header */
+    header {
+      background-color: #2874f0;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+    nav {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 10px 0;
+      position: sticky;
+      top: 50px;
+      z-index: 999;
+    }
+    nav a {
+      color: #2874f0;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover, nav a.active {
+      background-color: #e3f2fd;
+    }
+    main {
+      max-width: 900px;
+      margin: 20px auto 60px;
+      padding: 0 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+    h1 {
+      color: #2874f0;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #555;
+    }
+    ul.features-list {
+      list-style-type: disc;
+      padding-left: 20px;
+      color: #555;
+      font-size: 1rem;
+    }
+    ul.features-list li {
+      margin-bottom: 10px;
+    }
+    .cta-button {
+      display: block;
+      width: 200px;
+      margin: 30px auto 0;
+      padding: 12px 0;
+      background-color: #2874f0;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .cta-button:hover {
+      background-color: #1a52c0;
+    }
+    footer {
+      background-color: #2874f0;
+      color: white;
+      text-align: center;
+      padding: 15px 20px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" onclick="window.location.href='index1.html'">Study Buddy</div>
+  </header>
+  <nav>
+    <a href="index1.html">Home</a>
+    <a href="feature.html">Personalized Study Plan</a>
+    <a href="progressstracking.html" class="active">Progress Tracking</a>
+    <a href="discover.html">Discover</a>
+    <a href="signup.html">Sign Up</a>
+  </nav>
+  <main>
+    <h1>Progress Tracking</h1>
+    <p>Stay motivated and monitor your academic progress with our comprehensive progress tracking feature. Keep track of your study hours, completed tasks, and milestones to ensure you stay on the path to success.</p>
+    <p>Key features of our progress tracking include:</p>
+    <ul class="features-list">
+      <li>Visual charts and graphs to see your study time trends.</li>
+      <li>Task completion tracking to monitor your goals.</li>
+      <li>Milestone achievements and rewards to keep you motivated.</li>
+      <li>Daily, weekly, and monthly progress summaries.</li>
+      <li>Customizable reports to analyze your study habits.</li>
+    </ul>
+    <a href="progresstracking2.html" class="cta-button">Start Tracking Now</a>
+  </main>
+  <footer>
+    &copy; 2024 Study Buddy. All rights reserved.
+  </footer>
+</body>
+</html>

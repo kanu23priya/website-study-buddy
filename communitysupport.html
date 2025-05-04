@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Community Support - Study Buddy</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background-color: #2874f0;
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h1 {
+      color: #2874f0;
+      margin-bottom: 20px;
+    }
+    h2 {
+      color: #2874f0;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+    form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 0 8px rgba(40, 116, 240, 0.2);
+      max-width: 600px;
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button {
+      background-color: #2874f0;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1a52c0;
+    }
+    footer {
+      background-color: #2874f0;
+      color: white;
+      text-align: center;
+      padding: 15px 20px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Community Support
+  </header>
+  <main>
+    <h1>Welcome to the Study Buddy Community Support</h1>
+    <p>Our community support page is here to help you connect with fellow learners, get assistance, and share your experiences. Whether you have questions, need advice, or want to contribute, this is the place for you.</p>
+
+    <h2>How to Get Support</h2>
+    <ul>
+      <li>Join our community forums to ask questions and share knowledge.</li>
+      <li>Participate in live chat sessions with study experts and peers.</li>
+      <li>Access helpful resources and FAQs tailored to your study needs.</li>
+      <li>Attend virtual study groups and workshops.</li>
+    </ul>
+
+    <h2>Contact Us</h2>
+    <p>If you have specific questions or need personalized help, please fill out the form below and our support team will get back to you as soon as possible.</p>
+
+    <form id="supportForm">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your full name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Your email address" required />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </main>
+  <footer>
+    &copy; 2024 Study Buddy. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('supportForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      alert('Thank you for reaching out! We will get back to you shortly.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>

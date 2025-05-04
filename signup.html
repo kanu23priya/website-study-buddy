@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up - Study Buddy</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    header {
+      background-color: transparent;
+      color: white;
+      padding: 20px 20px 10px;
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      margin-bottom: 20px;
+    }
+    main {
+      max-width: 400px;
+      width: 90%;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 30px 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h2 {
+      color: #fff;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 700;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+      font-size: 2rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      padding: 14px 15px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.1rem;
+      width: 100%;
+      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333333;
+      transition: box-shadow 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      box-shadow: 0 0 10px #764ba2;
+    }
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 1.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background 0.3s ease;
+      box-shadow: 0 4px 15px rgba(118, 75, 162, 0.6);
+    }
+    button:hover {
+      background: linear-gradient(135deg, #e3ddea 0%, #f2f3f6 100%);
+      box-shadow: 0 6px 20px rgba(240, 240, 241, 0.8);
+    }
+    .back-link {
+      display: block;
+      margin: 25px auto 0;
+      text-align: center;
+      color: #d1c4e9;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>Study Buddy - Sign Up</header>
+  <main>
+    <h2>Sign Up</h2>
+    <form id="signupForm" onsubmit="event.preventDefault(); window.location.href='intrest.html';">
+      <input type="text" id="name" name="name" placeholder="Full Name" required />
+      <input type="email" id="email" name="email" placeholder="Email Address" required />
+      <input type="password" id="password" name="password" placeholder="Password" required />
+      <button type="submit">Sign Up</button>
+    </form>
+    <a href="index1.html" class="back-link">&larr; Back to Home</a>
+  </main>
+</body>
+</html>
